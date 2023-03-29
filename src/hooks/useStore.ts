@@ -24,7 +24,8 @@ function reducer (state: State, action: Action) {
   if (type === 'SET_FROM_LANGUAGE') {
     return {
       ...state,
-      fromLanguage: action.payload
+      fromLanguage: action.payload,
+      result:''
     }
   }
   if (type === 'SET_TO_LANGUAGE') {
@@ -36,7 +37,7 @@ function reducer (state: State, action: Action) {
   if (type === 'SET_FROM_TEXT') {
     return {
       ...state,
-      loadin: true,
+      loading: true,
       fromText: action.payload,
       result: ''
     }
@@ -44,7 +45,7 @@ function reducer (state: State, action: Action) {
   if (type === 'SET_RESULT') {
     return {
       ...state,
-      loadin: false,
+      loading: false,
       result: action.payload
     }
   }

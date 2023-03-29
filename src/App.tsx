@@ -30,7 +30,7 @@ function App () {
       // if (result === null || result === undefined) return
       setResult(result)
     }).catch(() => { setResult('Error') })
-  }, [fromText])
+  }, [fromText, fromLanguage, toLanguage])
 
   return (
     <Container fluid>
