@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { useEffect } from 'react'
 import { Container, Row, Col, Button, Stack } from 'react-bootstrap'
 import './App.css'
 import { ArrowIcons } from './components/Icons'
@@ -6,6 +7,7 @@ import { LanguageSelector } from './components/LanguageSelector'
 import TextArea from './components/TextArea'
 import { AUTO_LANGUAGE } from './constants'
 import { useStore } from './hooks/useStore'
+import { translate } from './services/translate'
 import { SectionType } from './types.d'
 
 function App () {
@@ -21,6 +23,15 @@ function App () {
     setFromText,
     setResult
   } = useStore()
+  useEffect(() => {
+    if (fromText === '') return
+    translate({ fromLanguage, toLanguage, text: fromText }).then(result => {
+      if (result == null) return
+      // if (result === null || result === undefined) return
+      setResult(result)
+    }).catch(() => { setResult('Error') })
+  }, [fromText])
+
   return (
     <Container fluid>
       <h1>Google Translate</h1>
