@@ -1,25 +1,28 @@
-// import 'bootstrap/dist/css/bootstrap.min.css'
-import { useReducer } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container, Row, Col } from 'react-bootstrap'
 import './App.css'
-import { initialState, reducer } from './hooks/useStore'
+import { useStore } from './hooks/useStore'
 
 function App () {
-  const [{
-    fromLanguage,
-    toLanguage,
-    fromText,
-    result,
-    loading
-  }, dispatch] = useReducer(reducer, initialState)
-  console.log(fromLanguage)
+  const { fromLanguage, toLanguage, interchangeLanguages } = useStore()
   return (
- <main>
-  <h1>Google Translate</h1>
-  <button onClick={() => { dispatch({ type: 'SET_FROM_LANGUAGE', payload: 'es' }) }}>
-    Cambiar a Español
-  </button>
-  {fromLanguage}
- </main>
+    <Container fluid>
+      <h1>Google Translate</h1>
+      <Row>
+        <Col>
+          <h2>From</h2>
+          {fromLanguage}
+        </Col>
+        <Col>
+          <button onClick={interchangeLanguages}>Intercambiar</button>
+        </Col>
+        <Col>
+          <h2>To</h2>
+          {toLanguage}
+        </Col>
+      </Row>
+      {fromLanguage}
+    </Container>
   )
 }
 
