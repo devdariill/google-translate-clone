@@ -16,10 +16,12 @@ export const LanguageSelector: FC<Props> = ({ onChange, type, value }) => {
     onChange(event.target.value as Language)
   }
   return (
-        <Form.Select aria-label="Selecciona un idioma" onChange={handleChange} value={value}>
-            {Object.entries(SUPPORTED_LANGUAGES).map(([key, literal]) => (
-                <option key={key} value={literal}>{literal}</option>
-            ))}
-        </Form.Select>
+    <Form.Select aria-label="Selecciona un idioma" onChange={handleChange} value={value}>
+      {
+        Object.entries(SUPPORTED_LANGUAGES).map(([key, literal]) => (
+          <option key={key} value={literal}>{literal}</option>
+        ))
+      }
+    </Form.Select>
   )
 }
