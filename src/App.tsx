@@ -15,17 +15,14 @@ function App () {
       <Row>
         <Col>
           <LanguageSelector type={SectionType.From} value={fromLanguage} onChange={setFromLanguage}/>
-          {fromLanguage}
         </Col>
         <Col>
           <Button variant='link' disabled={fromLanguage === AUTO_LANGUAGE} onClick={interchangeLanguages}><ArrowIcons/></Button>
         </Col>
         <Col>
           <LanguageSelector type={SectionType.To} value={toLanguage} onChange={setToLanguage}/>
-          {toLanguage}
         </Col>
       </Row>
-      {fromLanguage}
     </Container>
   )
 }
