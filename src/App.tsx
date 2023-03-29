@@ -13,14 +13,14 @@ function App () {
       <h1>Google Translate</h1>
       <Row>
         <Col>
-          <LanguageSelector onChange={setFromLanguage}/>
+          <LanguageSelector type="from" value={fromLanguage} onChange={setFromLanguage}/>
           {fromLanguage}
         </Col>
         <Col>
           <Button variant='link' disabled={fromLanguage === AUTO_LANGUAGE} onClick={interchangeLanguages}><ArrowIcons/></Button>
         </Col>
         <Col>
-          <LanguageSelector onChange={setToLanguage}/>
+          <LanguageSelector type="to" value={toLanguage} onChange={setToLanguage}/>
           {toLanguage}
         </Col>
       </Row>

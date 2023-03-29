@@ -1,11 +1,14 @@
 import { Form } from 'react-bootstrap'
 import { SUPPORTED_LANGUAGES } from '../constants'
 import { type FC } from 'react'
-import { type Language } from '../types'
+import { type FromLanguage, type Language } from '../types'
 
-interface Props {
-  onChange: (language: Language) => void
-}
+// interface Props {
+//   onChange: (language: Language) => void
+// }
+type Props =
+| { type: 'from', value: FromLanguage, onChange: (language: FromLanguage) => void }
+| { type: 'to', value: Language, onChange: (language: Language) => void }
 // export const LanguageSelector = ({ onChange }: { onChange: (language: string) => void }) => {
 // export const LanguageSelector = ({ onChange }: Props) => {
 export const LanguageSelector: FC<Props> = ({ onChange }) => {
