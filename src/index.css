@@ -1,10 +1,10 @@
 :root {
   font-family: Inter,Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color-scheme: light dark;
-  box-sizing: border-box;
+  color-scheme: light dark; 
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
