@@ -1,15 +1,16 @@
-import { type Action, type State } from '../types'
+import { useReducer } from 'react'
+import { type Language, type Action, type State, type FromLanguage } from '../types'
 
-export const initialState = {
+const initialState: State = {
   fromLanguage: 'auto',
   toLanguage: 'en',
-  fromTexto: '',
+  fromText: '',
   result: '',
   loading: false
 }
 
 // function reducer (state: typeof initialState, action) {
-export function reducer (state: State, action: Action) {
+function reducer (state: State, action: Action) {
   const { type } = action
   if (type === 'INTERCHANGE_LANGUAGES') {
     return {
@@ -46,4 +47,48 @@ export function reducer (state: State, action: Action) {
     }
   }
   return state
+}
+
+export function useStore () {
+  // 3. usar el hook useReducer
+  const [{
+    fromLanguage,
+    toLanguage,
+    fromText,
+    result,
+    loading
+  }, dispatch] = useReducer(reducer, initialState)
+
+  const interchangeLanguages = () => {
+    dispatch({ type: 'INTERCHANGE_LANGUAGES' })
+  }
+
+  const setFromLanguage = (payload: FromLanguage) => {
+    dispatch({ type: 'SET_FROM_LANGUAGE', payload })
+  }
+
+  const setToLanguage = (payload: Language) => {
+    dispatch({ type: 'SET_TO_LANGUAGE', payload })
+  }
+
+  const setFromText = (payload: string) => {
+    dispatch({ type: 'SET_FROM_TEXT', payload })
+  }
+
+  const setResult = (payload: string) => {
+    dispatch({ type: 'SET_RESULT', payload })
+  }
+
+  return {
+    fromLanguage,
+    toLanguage,
+    fromText,
+    result,
+    loading,
+    interchangeLanguages,
+    setFromLanguage,
+    setToLanguage,
+    setFromText,
+    setResult
+  }
 }
