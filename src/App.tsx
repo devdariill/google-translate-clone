@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react'
 import './App.css'
+import { type Action, type State } from './types'
 
 const initialState = {
   fromLanguage: 'auto',
@@ -10,8 +11,9 @@ const initialState = {
   loading: false
 }
 
-function reducer (state, action) {
-  const { type, payload } = action
+// function reducer (state: typeof initialState, action) {
+function reducer (state: State, action: Action) {
+  const { type } = action
   if (type === 'INTERCHANGE_LANGUAGE') {
     return {
       ...state,
@@ -22,20 +24,20 @@ function reducer (state, action) {
   if (type === 'SET_FROM_LANGUAGE') {
     return {
       ...state,
-      fromLanguage: payload
+      fromLanguage: action.payload
     }
   }
   if (type === 'SET_TO_LANGUAGE') {
     return {
       ...state,
-      toLanguage: payload
+      toLanguage: action.payload
     }
   }
   if (type === 'SET_FROM_TEXT') {
     return {
       ...state,
       loadin: true,
-      fromTexto: payload,
+      fromTexto: action.payload,
       result: ''
     }
   }
@@ -43,7 +45,7 @@ function reducer (state, action) {
     return {
       ...state,
       loadin: false,
-      result: payload
+      result: action.payload
     }
   }
   return state
