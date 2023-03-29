@@ -9,7 +9,18 @@ import { useStore } from './hooks/useStore'
 import { SectionType } from './types.d'
 
 function App () {
-  const { fromLanguage, toLanguage, interchangeLanguages, setFromLanguage, setToLanguage, fromText, result, setFromText, setResult } = useStore()
+  const {
+    loading,
+    fromLanguage,
+    toLanguage,
+    interchangeLanguages,
+    setFromLanguage,
+    setToLanguage,
+    fromText,
+    result,
+    setFromText,
+    setResult
+  } = useStore()
   return (
     <Container fluid>
       <h1>Google Translate</h1>
@@ -26,7 +37,7 @@ function App () {
         <Col>
           <Stack gap={2}>
             <LanguageSelector type={SectionType.To} value={toLanguage} onChange={setToLanguage}/>
-           <TextArea type={SectionType.To} value={result} onChange={setResult}/>
+           <TextArea loading={loading} type={SectionType.To} value={result} onChange={setResult}/>
           </Stack>
         </Col>
       </Row>
