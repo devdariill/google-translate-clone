@@ -5,7 +5,7 @@ import './App.css'
 import { ArrowIcons, CopyIcon, SpeakerIcon } from './components/Icons'
 import { LanguageSelector } from './components/LanguageSelector'
 import TextArea from './components/TextArea'
-import { AUTO_LANGUAGE } from './constants'
+import { AUTO_LANGUAGE, VOICE_FOR_LANGUAGE } from './constants'
 import { useDebounce } from './hooks/useDebounce'
 import { useStore } from './hooks/useStore'
 import { translate } from './services/translate'
@@ -38,8 +38,8 @@ function App () {
   }
   const handleSpeaker = () => {
     const utterance = new SpeechSynthesisUtterance(result)
-    utterance.lang = toLanguage // 'en-US' 'es-CO'
-    utterance.rate = 0.75
+    utterance.lang = VOICE_FOR_LANGUAGE[toLanguage] // 'en-US' 'es-CO'
+    utterance.rate = 0.99
     speechSynthesis.speak(utterance)
   }
 
