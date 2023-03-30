@@ -55,7 +55,7 @@ function App () {
               <Button
                 variant="link"
                 style={{ position:'absolute', bottom:0, left:0 }}
-                onClick={() => { navigator.clipboard.writeText(result) }} >
+                onClick={() => { navigator.clipboard.writeText(result).catch(() => { console.log('copy api fail') }) }} >
                   <CopyIcon/>
               </Button>
             </div>
