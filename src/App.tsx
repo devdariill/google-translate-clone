@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useEffect } from 'react'
 import { Container, Row, Col, Button, Stack } from 'react-bootstrap'
 import './App.css'
-import { ArrowIcons, CopyIcon } from './components/Icons'
+import { ArrowIcons, CopyIcon, SpeakerIcon } from './components/Icons'
 import { LanguageSelector } from './components/LanguageSelector'
 import TextArea from './components/TextArea'
 import { AUTO_LANGUAGE } from './constants'
@@ -36,6 +36,9 @@ function App () {
   const handleClipboard = () => {
     navigator.clipboard.writeText(result).catch(() => { console.log('copy api fail') })
   }
+  const handleSpeaker = () => {
+    console.log('speaker')
+  }
 
   return (
     <Container fluid>
@@ -55,12 +58,10 @@ function App () {
             <LanguageSelector type={SectionType.To} value={toLanguage} onChange={setToLanguage}/>
             <div style={{ position:'relative' }}>
               <TextArea loading={loading} type={SectionType.To} value={result} onChange={setResult}/>
-              <Button
-                variant="link"
-                style={{ position:'absolute', bottom:0, left:0 }}
-                onClick={handleClipboard} >
-                  <CopyIcon/>
-              </Button>
+              <div style={{ position:'absolute', bottom:0, left:0, display:'flex' }}>
+                <Button variant="link" onClick={handleClipboard} > <CopyIcon/> </Button>
+                <Button variant="link" onClick={handleSpeaker} > <SpeakerIcon/> </Button>
+              </div>
             </div>
           </Stack>
         </Col>
