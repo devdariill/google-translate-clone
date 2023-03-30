@@ -33,6 +33,9 @@ function App () {
       setResult(result)
     }).catch(() => { setResult('Error') })
   }, [debounceFromText, fromLanguage, toLanguage])
+  const handleClipboard = () => {
+    navigator.clipboard.writeText(result).catch(() => { console.log('copy api fail') })
+  }
 
   return (
     <Container fluid>
@@ -55,7 +58,7 @@ function App () {
               <Button
                 variant="link"
                 style={{ position:'absolute', bottom:0, left:0 }}
-                onClick={() => { navigator.clipboard.writeText(result).catch(() => { console.log('copy api fail') }) }} >
+                onClick={handleClipboard} >
                   <CopyIcon/>
               </Button>
             </div>
