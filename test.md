@@ -1,3 +1,4 @@
+*** Test End to Env ***
 pnpm add vitest happy-dom @testing-library/react @testing-library/user-event -D
 
 vite.conf.ts
@@ -14,3 +15,11 @@ export default defineConfig({
   }
 })
 ```
+Priority:
+getByRole
+getByLabelText
+getByPlaceholderText
+getByText
+getByDisplayValue
+getByAltText
+getByTitle
