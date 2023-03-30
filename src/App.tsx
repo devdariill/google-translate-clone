@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useEffect } from 'react'
 import { Container, Row, Col, Button, Stack } from 'react-bootstrap'
 import './App.css'
-import { ArrowIcons } from './components/Icons'
+import { ArrowIcons, CopyIcon } from './components/Icons'
 import { LanguageSelector } from './components/LanguageSelector'
 import TextArea from './components/TextArea'
 import { AUTO_LANGUAGE } from './constants'
@@ -50,7 +50,15 @@ function App () {
         <Col>
           <Stack gap={2}>
             <LanguageSelector type={SectionType.To} value={toLanguage} onChange={setToLanguage}/>
-           <TextArea loading={loading} type={SectionType.To} value={result} onChange={setResult}/>
+            <div style={{ position:'relative' }}>
+              <TextArea loading={loading} type={SectionType.To} value={result} onChange={setResult}/>
+              <Button
+                variant="link"
+                style={{ position:'absolute', bottom:0, left:0 }}
+                onClick={() => { navigator.clipboard.writeText(result) }} >
+                  <CopyIcon/>
+              </Button>
+            </div>
           </Stack>
         </Col>
       </Row>
