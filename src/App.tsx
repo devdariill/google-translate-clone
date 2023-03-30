@@ -6,6 +6,7 @@ import { ArrowIcons } from './components/Icons'
 import { LanguageSelector } from './components/LanguageSelector'
 import TextArea from './components/TextArea'
 import { AUTO_LANGUAGE } from './constants'
+import { useDebounce } from './hooks/useDebounce'
 import { useStore } from './hooks/useStore'
 import { translate } from './services/translate'
 import { SectionType } from './types.d'
@@ -23,14 +24,15 @@ function App () {
     setFromText,
     setResult
   } = useStore()
+  const debounceFromText = useDebounce(fromText, 750)
   useEffect(() => {
-    if (fromText === '') return
-    translate({ fromLanguage, toLanguage, text: fromText }).then(result => {
+    if (debounceFromText === '') return
+    translate({ fromLanguage, toLanguage, text: debounceFromText }).then(result => {
       if (result == null) return
       // if (result === null || result === undefined) return
       setResult(result)
     }).catch(() => { setResult('Error') })
-  }, [fromText, fromLanguage, toLanguage])
+  }, [debounceFromText, fromLanguage, toLanguage])
 
   return (
     <Container fluid>
