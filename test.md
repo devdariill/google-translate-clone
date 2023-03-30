@@ -1,0 +1,1 @@
+pnpm add vitest happy-dom @testing-library/react @testing-library/user-event -D
