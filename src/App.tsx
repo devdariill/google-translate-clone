@@ -37,7 +37,10 @@ function App () {
     navigator.clipboard.writeText(result).catch(() => { console.log('copy api fail') })
   }
   const handleSpeaker = () => {
-    console.log('speaker')
+    const utterance = new SpeechSynthesisUtterance(result)
+    utterance.lang = toLanguage // 'en-US' 'es-CO'
+    utterance.rate = 0.75
+    speechSynthesis.speak(utterance)
   }
 
   return (
